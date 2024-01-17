@@ -61,7 +61,7 @@ class Article(BaseModel):
     def to_dict(self):
         article_dict = self.__dict__.copy()
         article_dict['entities'] = [entity.to_dict() for entity in
-                                    self.entities]  # Convert EntityCollection to list of dictionaries
+                                    self.entities]  # Convert EntitiesCollection to list of dictionaries
         return article_dict
 
     def __setitem__(self, key, value):
@@ -229,7 +229,7 @@ class ArticleEncoder(json.JSONEncoder):
         if isinstance(obj, Entity):
             return obj.to_dict()
         if isinstance(obj, EntityCollection):
-            return obj.to_list()  # Serialize EntityCollection as a list of dictionaries
+            return obj.to_list()  # Serialize EntitiesCollection as a list of dictionaries
         return super().default(obj)
 
 

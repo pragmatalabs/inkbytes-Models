@@ -96,15 +96,15 @@ class EntityCollection(BaseModel):
         return len(self.entities)
 
     @classmethod
-    def from_list(cls, entities_data: List[Dict]) -> "EntityCollection":
+    def from_list(cls, entities_data: List[Dict]) -> "EntitiesCollection":
         """
-        Creates an EntityCollection from a list of dictionaries.
+        Creates an EntitiesCollection from a list of dictionaries.
 
         Parameters:
             entities_data (List[Dict]): List of dictionaries representing entities.
 
         Returns:
-            EntityCollection: An instance of the EntityCollection.
+            EntityCollection: An instance of the EntitiesCollection.
         """
         entity_collection = cls(entities=[])
         for entity_data in entities_data:
@@ -131,15 +131,15 @@ class EntityCollection(BaseModel):
         return "\n".join(str(entity) for entity in self.entities)
 
     @classmethod
-    def from_json(cls, json_data: str) -> "EntityCollection":
+    def from_json(cls, json_data: str) -> "EntitiesCollection":
         """
-        Creates an EntityCollection from a JSON string.
+        Creates an EntitiesCollection from a JSON string.
 
         Parameters:
             json_data (str): JSON string representation of the collection.
 
         Returns:
-            EntityCollection: An instance of the EntityCollection.
+            EntityCollection: An instance of the EntitiesCollection.
         """
         entities_data = json.loads(json_data)
         return cls.from_list(entities_data)
