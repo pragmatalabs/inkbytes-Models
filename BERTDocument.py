@@ -1,8 +1,6 @@
 from typing import List, Optional, Dict
-from pydantic import BaseModel, HttpUrl
-
-from Models.Article import Article
-from Models.Entities import Entity
+from pydantic import BaseModel
+from Entities import Entity
 
 
 class Metadata(BaseModel):

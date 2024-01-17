@@ -10,14 +10,6 @@ from Outlets import OutletsSource
 
 logger = logging.getLogger(__name__)
 
-"""
-Inkpills Grabit News Aggregation System
-Module Name: NewsPaper class
-Author: Julian De La Rosa <juliandelarosa@icloud.com>
-Date: 2023-04-29
-Purpose: encapsulates the newspaper class
-Dependencies: Requires >= Python 3.8.2 or higher
-"""
 import logging
 import newspaper
 

@@ -1,0 +1,4 @@
+langdetect==1.0.9
+Logger==1.4
+newspaper3k==0.2.8
+pydantic==1.10.12
