@@ -13,8 +13,8 @@ from datetime import datetime
 
 __name__ = "Articles Classes"
 
-from Entities import Entity
-from EntityCollection import EntityCollection
+from Entities import Entity,EntitiesCollection
+
 import Logger
 
 logger = Logger.get_logger(__name__)
@@ -31,7 +31,7 @@ class Article(BaseModel):
     cluster: Optional[str | int] = None
     factual: Optional[str] = None
     sentiment: Optional[str] = None
-    entities: Optional[EntityCollection | list | dict | Dict] = []
+    entities: Optional[EntitiesCollection | list | dict | Dict] = []
     article_url: Optional[str] = None
     article_source: Optional[str] = None
     title: Optional[str] = None
@@ -90,7 +90,7 @@ class Article(BaseModel):
     def get_entities(self):
         return self.entities
 
-    def set_entities(self, entitiesCollection: EntityCollection):
+    def set_entities(self, entitiesCollection: EntitiesCollection):
         self.entities = [entity for entity in entitiesCollection]
         return self.entities
 
@@ -169,7 +169,7 @@ class ArticleBuilder(BaseModel):
     cluster: str = None
     factual: str = None
     sentiment: str = None
-    entities: EntityCollection = EntityCollection()
+    entities: EntitiesCollection = EntitiesCollection()
     article_url: str = None
     article_source: str = None
     title: str = None
@@ -228,7 +228,7 @@ class ArticleEncoder(json.JSONEncoder):
             return obj.to_dict()
         if isinstance(obj, Entity):
             return obj.to_dict()
-        if isinstance(obj, EntityCollection):
+        if isinstance(obj, EntitiesCollection):
             return obj.to_list()  # Serialize EntitiesCollection as a list of dictionaries
         return super().default(obj)
 

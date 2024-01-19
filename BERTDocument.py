@@ -34,6 +34,4 @@ class BertDocument(BaseModel):
         orm = True
 
 
-
-
-BertDocument.update_forward_refs()
+BertDocument.model_rebuild()

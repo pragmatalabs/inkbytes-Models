@@ -1,6 +1,5 @@
 import logging
-import newspaper
-from pydantic import BaseModel, Field
+
 
 __name__ = "NewsPaper"
 
@@ -10,7 +9,6 @@ from Outlets import OutletsSource
 
 logger = logging.getLogger(__name__)
 
-import logging
 import newspaper
 
 logger = Logger.get_logger(__name__)

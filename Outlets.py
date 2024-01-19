@@ -8,6 +8,7 @@ from pydantic import BaseModel, Field
 __name__ = "Data Source Model"
 logger = logging.getLogger(__name__)
 
+
 class Attributes(BaseModel):
     name: str
     url: str
@@ -23,7 +24,7 @@ class OutletsSource(BaseModel):
 class OutletsHandler(BaseModel):
     news_outlets: list[OutletsSource] = []
 
-    def add(self, outlet:OutletsSource):
+    def add(self, outlet: OutletsSource):
         self.news_outlets.append(outlet.attributes)
 
     def remove_outlet(self, key: str):
