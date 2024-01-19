@@ -15,8 +15,7 @@ logger = Logger.get_logger(__name__)
 
 
 class NewsPaper:
-
-    def __init__(self, agent='', headers='') -> None:
+    def __init__(self, agent="", headers="") -> None:
         super().__init__()
         self.agent = agent
         self.headers = headers
@@ -51,15 +50,14 @@ class NewsPaper:
         :return: generated object
         """
         self.config = {
-            'memoize_articles': False,
-            'concurrent': True,
-            'follow_meta_refresh': True,
-            'http_success_only': False,
-            'headers': self.headers,
-            'agent': self.agent
+            "memoize_articles": False,
+            "concurrent": True,
+            "follow_meta_refresh": True,
+            "http_success_only": False,
+            "headers": self.headers,
+            "agent": self.agent,
         }
         try:
-
             paper = self.newspaper.build(outlet.url, **self.config)
             return self.generate_paper(paper)
         except ValueError as e:

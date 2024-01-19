@@ -13,7 +13,7 @@ from datetime import datetime
 
 __name__ = "Articles Classes"
 
-from Entities import Entity,EntitiesCollection
+from Entities import Entity, EntitiesCollection
 
 import Logger
 
@@ -60,8 +60,9 @@ class Article(BaseModel):
 
     def to_dict(self):
         article_dict = self.__dict__.copy()
-        article_dict['entities'] = [entity.to_dict() for entity in
-                                    self.entities]  # Convert EntitiesCollection to list of dictionaries
+        article_dict["entities"] = [
+            entity.to_dict() for entity in self.entities
+        ]  # Convert EntitiesCollection to list of dictionaries
         return article_dict
 
     def __setitem__(self, key, value):
@@ -192,30 +193,32 @@ class ArticleBuilder(BaseModel):
         orm_mode = True
         arbitrary_types_allowed = True
 
-    def buildFromNewspaper3K(self, article: newspaper.Article, newsPaperBrand: str) -> Article:
+    def buildFromNewspaper3K(
+        self, article: newspaper.Article, newsPaperBrand: str
+    ) -> Article:
         articleData = {}
         try:
             articleData = {
-                'fetched_on': str(datetime.now()),
-                'id': str(uuid.uuid3(uuid.NAMESPACE_URL, article.url)),
-                'uid': str(uuid.uuid3(uuid.NAMESPACE_URL, article.url)),
-                'title': article.title or "untitled",
-                'text': article.text,
-                'authors': article.authors or [],
-                'publish_date': str(article.publish_date),
-                'source_url': newsPaperBrand,
-                'article_url': article.url,
-                'keywords': article.keywords,
-                'summary': article.summary,
-                'similars': [],
-                'related': [],
-                'topics': [],
-                'sentiment': '',
-                'factual': '',
-                'language': langdetect.detect(article.text) or "en",
-                'last_updated': str(datetime.now()),
-                'metadata': article.meta_data or None,
-                'category': article.meta_data.get('category') or None,
+                "fetched_on": str(datetime.now()),
+                "id": str(uuid.uuid3(uuid.NAMESPACE_URL, article.url)),
+                "uid": str(uuid.uuid3(uuid.NAMESPACE_URL, article.url)),
+                "title": article.title or "untitled",
+                "text": article.text,
+                "authors": article.authors or [],
+                "publish_date": str(article.publish_date),
+                "source_url": newsPaperBrand,
+                "article_url": article.url,
+                "keywords": article.keywords,
+                "summary": article.summary,
+                "similars": [],
+                "related": [],
+                "topics": [],
+                "sentiment": "",
+                "factual": "",
+                "language": langdetect.detect(article.text) or "en",
+                "last_updated": str(datetime.now()),
+                "metadata": article.meta_data or None,
+                "category": article.meta_data.get("category") or None,
             }
         except ValueError as e:
             logger.error(f"Error fetching article: {e}")
@@ -229,7 +232,9 @@ class ArticleEncoder(json.JSONEncoder):
         if isinstance(obj, Entity):
             return obj.to_dict()
         if isinstance(obj, EntitiesCollection):
-            return obj.to_list()  # Serialize EntitiesCollection as a list of dictionaries
+            return (
+                obj.to_list()
+            )  # Serialize EntitiesCollection as a list of dictionaries
         return super().default(obj)
 
 
@@ -258,7 +263,9 @@ class ArticleCollection(BaseModel):
         self.articles.remove(article)
 
     def filter_articles(self, filter_func):
-        filtered_articles = [article for article in self.articles if filter_func(article)]
+        filtered_articles = [
+            article for article in self.articles if filter_func(article)
+        ]
         filtered_collection = ArticleCollection()
         filtered_collection.articles = filtered_articles
         return filtered_collection
@@ -283,7 +290,7 @@ class ArticleCollection(BaseModel):
 
     def __getitem__(self, key):
         if isinstance(key, slice):
-            return self.articles[key.start:key.stop:key.step]
+            return self.articles[key.start : key.stop : key.step]
         else:
             return self.articles[key]
 
@@ -312,7 +319,9 @@ class ArticleCollection(BaseModel):
 
     def load_articles_from_json(self, data):
         builder = ArticleBuilder()
-        self.articles = [builder.from_json(article_data).build() for article_data in data]
+        self.articles = [
+            builder.from_json(article_data).build() for article_data in data
+        ]
 
     def load_from_json(self, file_path):
         # Load the collection from a JSON file
@@ -324,9 +333,7 @@ class ArticleCollection(BaseModel):
 
     def to_dict(self):
         # Convert the collection to a Python dictionary
-        return {
-            "articles": [article.to_dict() for article in self.articles]
-        }
+        return {"articles": [article.to_dict() for article in self.articles]}
 
     def from_dict(self, data):
         # Create an ArticleCollection object from a Python dictionary
@@ -338,9 +345,10 @@ class ArticleCollection(BaseModel):
         return collection
 
     def filter_articles(self, filter_func):
-
         # Filter the articles in the collection using a filter function
-        filtered_articles = [article for article in self.articles if filter_func(article)]
+        filtered_articles = [
+            article for article in self.articles if filter_func(article)
+        ]
         # Create a new ArticleCollection object with the filtered articles
         filtered_collection = ArticleCollection()
         filtered_collection.articles = filtered_articles

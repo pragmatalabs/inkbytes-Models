@@ -14,7 +14,7 @@ class Entity(BaseModel):
         return {
             "type": self.type or "",
             "name": self.name or "",
-            "links": self.links or []
+            "links": self.links or [],
         }
 
     @classmethod

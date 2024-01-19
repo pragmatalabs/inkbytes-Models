@@ -40,6 +40,7 @@ soupsieve = "2.5"
 tinysegmenter = "0.4"
 tldextract = "5.1.1"
 tqdm = "4.66.1"
+langdetect = "1.0.9"
 
 
 [build-system]
