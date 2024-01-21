@@ -12,14 +12,12 @@ import uuid
 
 from datetime import datetime
 
-__name__ = "Articles Classes"
+__name__ = "Article Class"
 
 from Entities import Entity, EntitiesCollection
 
-import  Logger
-
-logger = Logger.get_logger(__name__)
-
+import logging
+logger = logging.getLogger(__name__)
 
 class Article(BaseModel):
     id: Optional[str] = Field(default=None, primary_key=True)
@@ -195,7 +193,7 @@ class ArticleBuilder(BaseModel):
         arbitrary_types_allowed = True
 
     def buildFromNewspaper3K(
-        self, article: newspaper.Article, newsPaperBrand: str
+            self, article: newspaper.Article, newsPaperBrand: str
     ) -> Article:
         articleData = {}
         try:
@@ -291,7 +289,7 @@ class ArticleCollection(BaseModel):
 
     def __getitem__(self, key):
         if isinstance(key, slice):
-            return self.articles[key.start : key.stop : key.step]
+            return self.articles[key.start: key.stop: key.step]
         else:
             return self.articles[key]
 

@@ -40,6 +40,6 @@ class OutletsHandler(BaseModel):
         return json.dumps(self.dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> "OutletsHandler":
+    def from_json(cls, json_str: str) -> "OutletsCollection":
         data = json.loads(json_str)
         return cls(**data)

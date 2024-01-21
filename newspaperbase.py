@@ -1,20 +1,15 @@
-import logging
 
-
-__name__ = "NewsPaper"
-
-import Logger as Logger
+__name__ = "NewsPaperBase"
 
 from Outlets import OutletsSource
+import logging
 
 logger = logging.getLogger(__name__)
 
 import newspaper
 
-logger = Logger.get_logger(__name__)
 
-
-class NewsPaper:
+class NewsPaperBase:
     def __init__(self, agent="", headers="") -> None:
         super().__init__()
         self.agent = agent

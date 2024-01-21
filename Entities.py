@@ -4,6 +4,10 @@ from pydantic import BaseModel, Field
 
 __name__ = "Entity Model Class"
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class Entity(BaseModel):
     type: Optional[str]
