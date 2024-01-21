@@ -3,6 +3,7 @@
 # --------------------------------
 import json
 from typing import List, Optional, Dict, Any
+
 from pydantic import BaseModel, Field
 import langdetect
 import newspaper
@@ -15,7 +16,7 @@ __name__ = "Articles Classes"
 
 from Entities import Entity, EntitiesCollection
 
-import Logger
+import  Logger
 
 logger = Logger.get_logger(__name__)
 

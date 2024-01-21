@@ -3,7 +3,7 @@ import logging
 
 __name__ = "NewsPaper"
 
-import Logger
+import Logger as Logger
 
 from Outlets import OutletsSource
 
@@ -52,7 +52,7 @@ class NewsPaper:
         self.config = {
             "memoize_articles": False,
             "concurrent": True,
-            "follow_meta_refresh": True,
+            "follow_meta_refresh": False,
             "http_success_only": False,
             "headers": self.headers,
             "agent": self.agent,
